@@ -3,7 +3,7 @@ from core.models import Order
 
 register = template.Library()
 
-
+# qs is query set
 @register.filter
 def cart_item_count(user):
     if user.is_authenticated:

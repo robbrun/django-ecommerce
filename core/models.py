@@ -33,6 +33,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+# Item is displayed in list of items that can be purchased.
+
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
@@ -62,6 +64,9 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+# Order item links between the Order and the Item.
+# Once item added to the cart it becomes an OrderItem.
+
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -86,6 +91,8 @@ class OrderItem(models.Model):
         if self.item.discount_price:
             return self.get_total_discount_item_price()
         return self.get_total_item_price()
+
+# When user logs in we fetch the items that were saved in their order cart.
 
 
 class Order(models.Model):
